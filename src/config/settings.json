@@ -1,0 +1,13 @@
+{
+  "embed": {
+    "color": "#0099ff",
+    "footer": {
+      "text": "Kuroyuki Bot",
+      "iconURL": ""
+    },
+    "author": {
+      "name": "Kuroyuki",
+      "iconURL": ""
+    }
+  }
+} 
