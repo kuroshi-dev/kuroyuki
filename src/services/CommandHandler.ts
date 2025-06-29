@@ -1,5 +1,5 @@
 import { Client, Message } from 'discord.js';
-import { commands } from '../commands/index.ts';
+import { commands } from '../textCommands/index.ts';
 import { config } from '../config/index.ts';
 import { ITextCommand, ITextCommandHandler } from '../types/index.ts';
 
