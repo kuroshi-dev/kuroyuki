@@ -38,13 +38,15 @@ export class Bot implements IBot {
             if (!config.clientId) {
                 throw new Error('CLIENT_ID не установлен в переменных окружения');
             }
-
-            console.log('🚀 Бот запускается...');
             
             this.eventManager.registerEvents(events);
+            // console.log('✅ События зарегистрированы');
+            
             await this.client.login(config.token);
+            // console.log('✅ Бот успешно подключился к Discord');
 
             await this.slashCommandHandler.registerCommands();
+            // console.log('✅ Slash команды зарегистрированы');
 
         } catch (error) {
             console.error('❌ Ошибка запуска бота:', error);

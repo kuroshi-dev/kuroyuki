@@ -14,11 +14,11 @@ export class SlashCommandHandler implements ISlashCommandHandler {
     }
 
     private loadCommands(): void {
-        console.log(`📦 Загружено ${slashCommands.length} slash команд:`);
-        slashCommands.forEach(command => {
-            this.commands.set(command.data.name, command);
-            console.log(`  - /${command.data.name}: ${command.data.description}`);
-        });
+        console.log(`📦 Загружено ${slashCommands.length} slash-команд.`);
+        // slashCommands.forEach(command => {
+        //     this.commands.set(command.data.name, command);
+        //     console.log(`  - /${command.data.name}: ${command.data.description}`);
+        // });
     }
 
     public registerCommand(command: ISlashCommand): void {
@@ -52,15 +52,11 @@ export class SlashCommandHandler implements ISlashCommandHandler {
             const rest = new REST({ version: '10' }).setToken(config.token);
             const commandData = slashCommands.map(command => command.data.toJSON());
 
-            console.log('🔄 Начинаю регистрацию slash команд...');
-            console.log(`📋 Команды для регистрации: ${commandData.map(cmd => cmd.name).join(', ')}`);
-
             await rest.put(
                 Routes.applicationCommands(config.clientId),
                 { body: commandData }
             );
 
-            console.log(`✅ Регистрация завершена! Зарегистрировано ${commandData.length} slash команд`);
         } catch (error) {
             console.error('❌ Ошибка при регистрации slash команд:', error);
             throw error;
@@ -87,4 +83,4 @@ export class SlashCommandHandler implements ISlashCommandHandler {
             }
         }
     }
-} 
+}

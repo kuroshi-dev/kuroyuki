@@ -25,4 +25,4 @@ export const messageCreate: IEvent = {
             await message.reply('❌ Произошла ошибка при выполнении команды!');
         }
     },
-}; 
+}

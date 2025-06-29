@@ -23,11 +23,11 @@ export const restart: ITextCommand = {
             
             console.log(`🚀 Запускаем команду: ${restartCommand}`);
             
-            // Start new process
+            // Start new process with better process management
             const child = spawn(restartCommand, {
                 shell: true,
                 detached: true,
-                stdio: 'inherit',
+                stdio: 'ignore',
                 cwd: process.cwd()
             });
 
@@ -37,6 +37,11 @@ export const restart: ITextCommand = {
                 replyMessage.edit('❌ Ошибка при запуске нового процесса.');
             });
 
+            // Handle exit
+            child.on('exit', (code) => {
+                console.log(`📤 Новый процесс завершился с кодом: ${code}`);
+            });
+
             // Detach new process from parent
             child.unref();
 
@@ -44,11 +49,11 @@ export const restart: ITextCommand = {
             await replyMessage.edit('✅ Бот успешно перезапущен!');
             console.log('✅ Бот успешно перезапущен!');
             
-            // Give time to send message
+            // Give time to send message and ensure clean exit
             setTimeout(() => {
                 console.log('🛑 Завершение текущего процесса...');
                 process.exit(0);
-            }, 2000);
+            }, 3000);
 
         } catch (error) {
             console.error('❌ Ошибка при перезапуске бота:', error);

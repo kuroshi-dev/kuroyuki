@@ -11,6 +11,11 @@ export class EventManager implements IEventManager {
     }
 
     public registerEvent(event: IEvent): void {
+        if (this.registeredEvents.has(event.name)) {
+            console.warn(`⚠️ Событие ${event.name} уже зарегистрировано! Пропускаем повторную регистрацию.`);
+            return;
+        }
+        
         this.registeredEvents.set(event.name, event);
         
         if (event.once) {

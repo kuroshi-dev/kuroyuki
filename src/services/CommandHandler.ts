@@ -14,6 +14,8 @@ export class CommandHandler implements ITextCommandHandler {
     }
 
     private loadCommands(): void {
+
+        console.log(`📦 Загружено ${commands.size} текстовых команд.`);
         commands.forEach((command, name) => {
             this.commands.set(name, command);
         });
