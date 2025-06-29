@@ -1,6 +1,6 @@
-import { Command } from '../types/index.ts';
+import { ITextCommand } from '../types/index.ts';
 
-export const ping: Command = {
+export const ping: ITextCommand = {
     name: 'ping',
     description: 'Проверяет задержку бота',
     usage: 'ping',

@@ -1,6 +1,6 @@
-import { Command } from '../types/index.ts';
+import { ITextCommand } from '../types/index.ts';
 
-export const hello: Command = {
+export const hello: ITextCommand = {
     name: 'hello',
     description: 'Приветствует пользователя',
     usage: 'hello',

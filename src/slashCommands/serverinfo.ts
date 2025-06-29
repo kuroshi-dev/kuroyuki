@@ -1,7 +1,9 @@
 import { SlashCommandBuilder, EmbedBuilder, ChatInputCommandInteraction } from 'discord.js';
-import { SlashCommand } from '../types/index.ts';
+import { ISlashCommand } from '../types/index.ts';
 
-export const serverinfo: SlashCommand = {
+export const serverinfo: ISlashCommand = {
+    name: 'serverinfo',
+    description: 'Показывает информацию о сервере',
     data: new SlashCommandBuilder()
         .setName('serverinfo')
         .setDescription('Показывает информацию о сервере'),

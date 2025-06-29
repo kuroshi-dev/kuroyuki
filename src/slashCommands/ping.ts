@@ -1,7 +1,9 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
-import { SlashCommand } from '../types/index.ts';
+import { ISlashCommand } from '../types/index.ts';
 
-export const ping: SlashCommand = {
+export const ping: ISlashCommand = {
+    name: 'ping',
+    description: 'Проверяет задержку бота',
     data: new SlashCommandBuilder()
         .setName('ping')
         .setDescription('Проверяет задержку бота'),

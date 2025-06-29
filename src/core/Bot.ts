@@ -3,13 +3,15 @@ import { config } from '../config/index.ts';
 import { EventManager } from '../services/EventManager.ts';
 import { CommandHandler } from '../services/CommandHandler.ts';
 import { SlashCommandHandler } from '../services/SlashCommandHandler.ts';
+import { IBot, ITextCommandHandler, ISlashCommandHandler, IEventManager } from '../types/index.ts';
+import { events } from '../events/index.ts';
 import process from "node:process";
 
-export class Bot {
+export class Bot implements IBot {
     private client: Client;
-    private eventManager: EventManager;
-    private commandHandler: CommandHandler;
-    private slashCommandHandler: SlashCommandHandler;
+    private eventManager: IEventManager;
+    private commandHandler: ITextCommandHandler;
+    private slashCommandHandler: ISlashCommandHandler;
 
     constructor() {
         this.client = new Client({
@@ -24,7 +26,7 @@ export class Bot {
     }
 
     private setupClient(): void {
-        (this.client as Client & { slashCommandHandler: SlashCommandHandler }).slashCommandHandler = this.slashCommandHandler;
+        (this.client as Client & { slashCommandHandler: ISlashCommandHandler }).slashCommandHandler = this.slashCommandHandler;
     }
 
     public async start(): Promise<void> {
@@ -39,7 +41,7 @@ export class Bot {
 
             console.log('🚀 Бот запускается...');
             
-            this.eventManager.registerEvents();
+            this.eventManager.registerEvents(events);
             await this.client.login(config.token);
 
             await this.slashCommandHandler.registerCommands();
@@ -50,15 +52,28 @@ export class Bot {
         }
     }
 
+    public async stop(): Promise<void> {
+        try {
+            await this.client.destroy();
+            console.log('🛑 Бот остановлен');
+        } catch (error) {
+            console.error('❌ Ошибка при остановке бота:', error);
+        }
+    }
+
     public getClient(): Client {
         return this.client;
     }
 
-    public getCommandHandler(): CommandHandler {
+    public getCommandHandler(): ITextCommandHandler {
         return this.commandHandler;
     }
 
-    public getSlashCommandHandler(): SlashCommandHandler {
+    public getSlashCommandHandler(): ISlashCommandHandler {
         return this.slashCommandHandler;
+    }
+
+    public getEventManager(): IEventManager {
+        return this.eventManager;
     }
 } 

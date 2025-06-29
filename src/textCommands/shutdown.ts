@@ -1,7 +1,7 @@
-import { Command } from '../types/index.ts';
+import { ITextCommand } from '../types/index.ts';
 import process from "node:process";
 
-export const shutdown: Command = {
+export const shutdown: ITextCommand = {
     name: 'shutdown',
     description: 'Останавливает бота (только для владельца)',
     usage: 'shutdown',

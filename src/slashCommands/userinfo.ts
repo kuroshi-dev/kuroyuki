@@ -1,7 +1,9 @@
 import { SlashCommandBuilder, EmbedBuilder, Role } from 'discord.js';
-import { SlashCommand } from '../types/index.ts';
+import { ISlashCommand } from '../types/index.ts';
 
-export const userinfo: SlashCommand = {
+export const userinfo: ISlashCommand = {
+    name: 'userinfo',
+    description: 'Показывает информацию о пользователе',
     data: new SlashCommandBuilder()
         .setName('userinfo')
         .setDescription('Показывает информацию о пользователе')

@@ -1,7 +1,7 @@
-import { Command } from '../types/index.ts';
+import { ITextCommand } from '../types/index.ts';
 import { EmbedBuilder, Role } from 'discord.js';
 
-export const userinfo: Command = {
+export const userinfo: ITextCommand = {
     name: 'userinfo',
     description: 'Показывает информацию о пользователе',
     usage: 'userinfo',

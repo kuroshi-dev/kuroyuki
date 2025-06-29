@@ -1,7 +1,9 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
-import { SlashCommand } from '../types/index.ts';
+import { ISlashCommand } from '../types/index.ts';
 
-export const hello: SlashCommand = {
+export const hello: ISlashCommand = {
+    name: 'hello',
+    description: 'Приветствует пользователя',
     data: new SlashCommandBuilder()
         .setName('hello')
         .setDescription('Приветствует пользователя'),

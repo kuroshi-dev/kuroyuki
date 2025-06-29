@@ -1,8 +1,10 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import { SlashCommand } from '../types/index.ts';
+import { ISlashCommand } from '../types/index.ts';
 import { slashCommands } from './index.ts';
 
-export const help: SlashCommand = {
+export const help: ISlashCommand = {
+    name: 'help',
+    description: 'Помощь по командам',
     data: new SlashCommandBuilder()
         .setName('help')
         .setDescription('Помощь по командам')
@@ -15,18 +17,18 @@ export const help: SlashCommand = {
         const commandName = interaction.options.getString('команда');
         
         if (!commandName) {
-            // Показать общий список команд
+            // show a general list of commands
             const embed = new EmbedBuilder()
                 .setColor('#0099ff')
                 .setTitle('Помощь по командам')
                 .setDescription('Используйте `/help <команда>` для получения подробной информации о конкретной команде')
                 .addFields(
-                    { name: 'Доступные команды', value: slashCommands.map((command: SlashCommand) => `- /${command.data.name}`).join('\n') }
+                    { name: 'Доступные команды', value: slashCommands.map((command: ISlashCommand) => `- /${command.data.name}`).join('\n') }
                 );
             await interaction.reply({ embeds: [embed] });
         } else {
-            // Показать информацию о конкретной команде
-            const command = slashCommands.find((cmd: SlashCommand) => cmd.data.name === commandName);
+            // show information about a specific command
+            const command = slashCommands.find((cmd: ISlashCommand) => cmd.data.name === commandName);
             
             if (command) {
                 const embed = new EmbedBuilder()

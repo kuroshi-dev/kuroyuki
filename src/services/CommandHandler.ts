@@ -1,16 +1,51 @@
 import { Client, Message } from 'discord.js';
 import { commands } from '../commands/index.ts';
 import { config } from '../config/index.ts';
-import { Command } from '../types/index.ts';
+import { ITextCommand, ITextCommandHandler } from '../types/index.ts';
 
-export class CommandHandler {
+export class CommandHandler implements ITextCommandHandler {
     private client: Client;
+    private commands: Map<string, ITextCommand>;
 
     constructor(client: Client) {
         this.client = client;
+        this.commands = new Map();
+        this.loadCommands();
     }
 
-    public handleMessage(message: Message): void {
+    private loadCommands(): void {
+        commands.forEach((command, name) => {
+            this.commands.set(name, command);
+        });
+    }
+
+    public registerCommand(command: ITextCommand): void {
+        this.commands.set(command.name, command);
+    }
+
+    public unregisterCommand(commandName: string): void {
+        this.commands.delete(commandName);
+    }
+
+    public getCommand(commandName: string): ITextCommand | undefined {
+        return this.commands.get(commandName);
+    }
+
+    public getAllCommands(): Map<string, ITextCommand> {
+        return new Map(this.commands);
+    }
+
+    public async executeCommand(commandName: string, ...args: unknown[]): Promise<void> {
+        const command = this.commands.get(commandName);
+        if (!command) {
+            throw new Error(`Команда ${commandName} не найдена`);
+        }
+        
+        const message = args[0] as Message;
+        await command.execute(message);
+    }
+
+    public async handleMessage(message: Message): Promise<void> {
         if (message.author.bot) return;
         if (!message.content.startsWith(config.prefix)) return;
 
@@ -19,22 +54,14 @@ export class CommandHandler {
 
         if (!commandName) return;
 
-        const command = commands.get(commandName);
+        const command = this.commands.get(commandName);
         if (!command) return;
 
-        this.executeCommand(command, message, args);
-    }
-
-    private async executeCommand(command: Command, message: Message, _args: string[]): Promise<void> {
         try {
             await command.execute(message);
         } catch (error) {
             console.error(`Ошибка выполнения команды ${command.name}:`, error);
             await message.reply('❌ Произошла ошибка при выполнении команды!');
         }
-    }
-
-    public getCommands(): Map<string, Command> {
-        return commands;
     }
 } 
