@@ -1,8 +1,9 @@
 import { REST, Routes } from 'discord.js';
 import { slashCommands } from './slashCommands/index.ts';
 import { config } from './config/index.ts';
+import process from 'node:process';
 
-async function deployCommands() {
+export async function deployCommands() {
     try {
         const rest = new REST({ version: '10' }).setToken(config.token);
         const commandData = slashCommands.map(command => command.data.toJSON());
@@ -24,4 +25,7 @@ async function deployCommands() {
     }
 }
 
-deployCommands(); 
+// Run deployCommands if the script is executed directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+    deployCommands();
+} 

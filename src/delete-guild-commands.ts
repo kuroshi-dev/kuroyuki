@@ -1,9 +1,10 @@
 import { REST, Routes } from 'discord.js';
 import { config } from './config/index.ts';
+import process from 'node:process';
 
 const guildId = '1088020056899862551';
 
-async function deleteGuildCommands() {
+export async function deleteGuildCommands() {
     try {
         const rest = new REST({ version: '10' }).setToken(config.token);
 
@@ -20,4 +21,7 @@ async function deleteGuildCommands() {
     }
 }
 
-deleteGuildCommands(); 
+// Run deleteGuildCommands only if the script is executed directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+    deleteGuildCommands();
+} 

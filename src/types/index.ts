@@ -1,5 +1,13 @@
 import { SlashCommandBuilder, SlashCommandSubcommandsOnlyBuilder, SlashCommandOptionsOnlyBuilder, ChatInputCommandInteraction, Message, Client } from 'discord.js';
 
+// Extend Discord.js Client type
+declare module 'discord.js' {
+    interface Client {
+        bot?: IBot;
+    }
+}
+
+// Bot config interface
 export interface BotConfig {
     token: string;
     prefix: string;
@@ -16,9 +24,7 @@ export interface ICommand {
 
 // text command interface
 export interface ITextCommand extends ICommand {
-    
     readonly usage: string;
-    readonly ephemeral?: boolean;
     execute(message: Message): Promise<void>;
 }
 

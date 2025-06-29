@@ -1,7 +1,8 @@
 import { REST, Routes } from 'discord.js';
 import { config } from './config/index.ts';
+import process from 'node:process';
 
-async function deleteCommands() {
+export async function deleteCommands() {
     try {
         const rest = new REST({ version: '10' }).setToken(config.token);
 
@@ -18,4 +19,7 @@ async function deleteCommands() {
     }
 }
 
-deleteCommands(); 
+// Run deleteCommands if the script is executed directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+    deleteCommands();
+} 
