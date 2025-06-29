@@ -1,8 +1,8 @@
-import { Event } from '../types/index.ts';
+import { IEvent } from '../types/index.ts';
 import { Client, Interaction } from 'discord.js';
 import { SlashCommandHandler } from '../services/SlashCommandHandler.ts';
 
-export const interactionCreate: Event = {
+export const interactionCreate: IEvent = {
     name: 'interactionCreate',
     execute: async (...args: unknown[]) => {
         const interaction = args[0] as Interaction;

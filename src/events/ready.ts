@@ -1,7 +1,7 @@
-import { Event } from '../types/index.ts';
+import { IEvent } from '../types/index.ts';
 import { Client } from 'discord.js';
 
-export const ready: Event = {
+export const ready: IEvent = {
     name: 'ready',
     once: true,
     execute: (...args: unknown[]) => {

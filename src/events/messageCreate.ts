@@ -1,9 +1,9 @@
-import { Event } from '../types/index.ts';
+import { IEvent } from '../types/index.ts';
 import { Message } from 'discord.js';
-import { commands } from '../commands/index.ts';
+import { commands } from '../textCommands/index.ts';
 import { config } from '../config/index.ts';
 
-export const messageCreate: Event = {
+export const messageCreate: IEvent = {
     name: 'messageCreate',
     execute: async (...args: unknown[]) => {
         const message = args[0] as Message;
