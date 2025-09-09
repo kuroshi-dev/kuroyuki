@@ -3,6 +3,7 @@ import { hello } from './hello.ts';
 import { userinfo } from './userinfo.ts';
 import { serverinfo } from './serverinfo.ts';
 import { help } from './help.ts';
+import { timeout } from './timeout.ts';
 import { ISlashCommand } from '../types/index.ts';   
 
 export const slashCommands: ISlashCommand[] = [
@@ -11,6 +12,7 @@ export const slashCommands: ISlashCommand[] = [
     hello,
     serverinfo,
     userinfo,
+    timeout,
 ];
 
-export { ping, hello, userinfo, serverinfo, help }; 
+export { ping, hello, userinfo, serverinfo, help, timeout };

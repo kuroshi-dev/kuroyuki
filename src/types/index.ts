@@ -1,4 +1,5 @@
 import { SlashCommandBuilder, SlashCommandSubcommandsOnlyBuilder, SlashCommandOptionsOnlyBuilder, ChatInputCommandInteraction, Message, Client } from 'discord.js';
+import { ActivityManager } from '../services/ActivityManager.ts';
 
 // Extend Discord.js Client type
 declare module 'discord.js' {
@@ -82,4 +83,5 @@ export interface IBot {
     getCommandHandler(): ITextCommandHandler;
     getSlashCommandHandler(): ISlashCommandHandler;
     getEventManager(): IEventManager;
+    getActivityManager(): ActivityManager;
 }

@@ -15,10 +15,10 @@ export class SlashCommandHandler implements ISlashCommandHandler {
 
     private loadCommands(): void {
         console.log(`📦 Загружено ${slashCommands.length} slash-команд.`);
-        // slashCommands.forEach(command => {
-        //     this.commands.set(command.data.name, command);
-        //     console.log(`  - /${command.data.name}: ${command.data.description}`);
-        // });
+        slashCommands.forEach(command => {
+            this.commands.set(command.data.name, command);
+            // console.log(`  - /${command.data.name}: ${command.data.description}`);
+        });
     }
 
     public registerCommand(command: ISlashCommand): void {

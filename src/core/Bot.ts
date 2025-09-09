@@ -5,13 +5,15 @@ import { CommandHandler } from '../services/CommandHandler.ts';
 import { SlashCommandHandler } from '../services/SlashCommandHandler.ts';
 import { IBot, ITextCommandHandler, ISlashCommandHandler, IEventManager } from '../types/index.ts';
 import { events } from '../events/index.ts';
-import process from "node:process";
+import { ActivityManager } from '../services/ActivityManager.ts';
+import process from 'node:process';
 
 export class Bot implements IBot {
     private client: Client;
     private eventManager: IEventManager;
     private commandHandler: ITextCommandHandler;
     private slashCommandHandler: ISlashCommandHandler;
+    private activityManager: ActivityManager;
 
     constructor() {
         this.client = new Client({
@@ -21,6 +23,7 @@ export class Bot implements IBot {
         this.eventManager = new EventManager(this.client);
         this.commandHandler = new CommandHandler(this.client);
         this.slashCommandHandler = new SlashCommandHandler(this.client);
+        this.activityManager = new ActivityManager(this.client);
 
         this.setupClient();
     }
@@ -77,5 +80,9 @@ export class Bot implements IBot {
 
     public getEventManager(): IEventManager {
         return this.eventManager;
+    }
+
+    public getActivityManager(): ActivityManager {
+        return this.activityManager;
     }
 } 

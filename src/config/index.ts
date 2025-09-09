@@ -27,6 +27,8 @@ export const config: BotConfig = {
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildPresences,
         GatewayIntentBits.MessageContent,
     ],
 }; 

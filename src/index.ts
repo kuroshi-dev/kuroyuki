@@ -1,4 +1,5 @@
 import { Bot } from './core/Bot.ts';
+import process from 'node:process';
 
 console.log(`🚀 Запуск бота... PID: ${process.pid}`);
 

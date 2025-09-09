@@ -2,10 +2,10 @@ import { ITextCommand } from '../types/index.ts';
 import { EmbedBuilder } from 'discord.js';
 import { commands } from './index.ts';
 
-export const command: ITextCommand = {
-    name: 'commands',
+export const commandlist: ITextCommand = {
+    name: 'commandlist',
     description: 'Список всех команд',
-    usage: 'commands',
+    usage: 'commandlist',
     execute: async (message) => {
         const embed = new EmbedBuilder()
             .setColor('#0099ff')

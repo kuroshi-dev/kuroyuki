@@ -1,5 +1,5 @@
 import { ITextCommand } from '../types/index.ts';
-import { EmbedBuilder, Role } from 'discord.js';
+import { Activity, EmbedBuilder, Role } from 'discord.js';
 
 export const userinfo: ITextCommand = {
     name: 'userinfo',
@@ -18,7 +18,9 @@ export const userinfo: ITextCommand = {
                 { name: 'Создан', value: user.createdAt.toLocaleDateString(), inline: true },
                 { name: 'Присоединился', value: member?.joinedAt?.toLocaleDateString() || 'Неизвестно', inline: true },
                 { name: 'Никнейм', value: member?.nickname || 'Не установлен', inline: true },
-                { name: 'Роли', value: member?.roles.cache.map((role: Role ) => `<@&${role.id}>\n`).join('') || 'Нет ролей', inline: false }
+                { name: 'Роли', value: member?.roles.cache.map((role: Role) => `<@&${role.id}>\n`).join('') || 'Нет ролей', inline: false },
+                { name: 'Статус', value: member?.presence?.status || 'Неизвестно', inline: true },
+                { name: 'Активность', value: member?.presence?.activities.map((activity: Activity) => `${activity.type} - ${activity.name}\n`).join('') || 'Неизвестно', inline: false }
             )
             .setTimestamp();
         await message.reply({ embeds: [embed] });

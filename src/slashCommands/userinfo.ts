@@ -13,7 +13,8 @@ export const userinfo: ISlashCommand = {
                 .setRequired(false)) as SlashCommandBuilder,
     execute: async (interaction) => {
         const user = interaction.options.getUser('user') || interaction.user;
-        const member = interaction.guild?.members.cache.get(user.id);
+        const guild = interaction.guild;
+        const member = guild ? await guild.members.fetch(user.id) : null;
 
         const embed = new EmbedBuilder()
             .setColor('#0099ff')
@@ -24,6 +25,7 @@ export const userinfo: ISlashCommand = {
                 { name: 'Создан', value: user.createdAt.toLocaleDateString(), inline: true },
                 { name: 'Присоединился', value: member?.joinedAt?.toLocaleDateString() || 'Неизвестно', inline: true },
                 { name: 'Никнейм', value: member?.nickname || 'Не установлен', inline: true },
+                { name: 'Статус', value: member?.presence?.status || 'Неизвестно', inline: true },
                 { name: 'Роли', value: member?.roles.cache.map((role: Role) => `<@&${role.id}>\n`).join('') || 'Нет ролей', inline: false }
             )
             .setTimestamp();

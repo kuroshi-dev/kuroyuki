@@ -6,7 +6,7 @@ import { restart } from './restart.ts';
 import { redeploy } from './redeploy.ts';
 import { serverinfo } from './serverinfo.ts';
 import { ITextCommand } from '../types/index.ts';
-import { command } from './commands.ts';
+import { commandlist } from './commandlist.ts';
 
 export const commands: Map<string, ITextCommand> = new Map([
     [ping.name, ping],
@@ -16,7 +16,7 @@ export const commands: Map<string, ITextCommand> = new Map([
     [restart.name, restart],
     [redeploy.name, redeploy],
     [serverinfo.name, serverinfo],
-    [command.name, command],
+    [commandlist.name, commandlist],
 ]);
 
-export { ping, hello, userinfo, serverinfo, shutdown, restart, redeploy, command }; 
+export { ping, hello, userinfo, serverinfo, shutdown, restart, redeploy, commandlist }; 
