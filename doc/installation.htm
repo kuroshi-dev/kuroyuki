@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+    <title>Installation and Setup - Kuroyuki Discord Bot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Installation and Setup</h1>
+        <p><a href="index.htm">← Back to main</a></p>
+
+        <h2>Prerequisites</h2>
+        <p>Before installing Kuroyuki Bot, ensure you have the following prerequisites installed and configured:</p>
+
+        <table>
+            <tr>
+                <th>Requirement</th>
+                <th>Minimum Version</th>
+                <th>Recommended Version</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>Node.js</td>
+                <td>18.0.0</td>
+                <td>20.0.0+</td>
+                <td>JavaScript runtime environment</td>
+            </tr>
+            <tr>
+                <td>npm</td>
+                <td>9.0.0</td>
+                <td>Latest</td>
+                <td>Package manager</td>
+            </tr>
+            <tr>
+                <td>Git</td>
+                <td>2.30.0</td>
+                <td>Latest</td>
+                <td>Version control system</td>
+            </tr>
+            <tr>
+                <td>Text Editor</td>
+                <td>Any</td>
+                <td>VS Code</td>
+                <td>Code editing and development</td>
+            </tr>
+        </table>
+
+        <h2>Discord Application Setup</h2>
+
+        <div class="step-box">
+            <h3><span class="step-number">1</span>Create Discord Application</h3>
+            <ol>
+                <li>Go to <a href="https://discord.com/developers/applications" target="_blank">Discord Developer
+                        Portal</a></li>
+                <li>Click "New Application" button</li>
+                <li>Enter application name (e.g., "Kuroyuki Bot")</li>
+                <li>Click "Create"</li>
+            </ol>
+        </div>
+
+        <div class="step-box">
+            <h3><span class="step-number">2</span>Configure Bot Settings</h3>
+            <ol>
+                <li>Navigate to the "Bot" section in the left sidebar</li>
+                <li>Click "Add Bot" if not already created</li>
+                <li>Copy the bot token (keep this secure!)</li>
+                <li>Enable the following Privileged Gateway Intents:
+                    <ul>
+                        <li>Presence Intent</li>
+                        <li>Server Members Intent</li>
+                        <li>Message Content Intent</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="step-box">
+            <h3><span class="step-number">3</span>Generate Bot Invite Link</h3>
+            <ol>
+                <li>Go to the "OAuth2" → "URL Generator" section</li>
+                <li>Select "bot" and "applications.commands" scopes</li>
+                <li>Select the following bot permissions:
+                    <ul>
+                        <li>Send Messages</li>
+                        <li>Use Slash Commands</li>
+                        <li>Read Message History</li>
+                        <li>Moderate Members</li>
+                        <li>View Channels</li>
+                        <li>Embed Links</li>
+                    </ul>
+                </li>
+                <li>Copy the generated URL</li>
+            </ol>
+        </div>
+
+        <h2>Local Development Setup</h2>
+
+        <div class="step-box">
+            <h3><span class="step-number">4</span>Clone Repository</h3>
+            <div class="code-block">
+                git clone https://github.com/kuroshi-dev/kuroyuki.git
+                cd kuroyuki
+            </div>
+        </div>
+
+        <div class="step-box">
+            <h3><span class="step-number">5</span>Install Dependencies</h3>
+            <div class="code-block">
+                npm install
+            </div>
+            <p>This will install all required packages including:</p>
+            <ul>
+                <li><strong>discord.js</strong> - Discord API wrapper</li>
+                <li><strong>dotenv</strong> - Environment variable management</li>
+                <li><strong>typescript</strong> - TypeScript compiler</li>
+                <li><strong>tsx</strong> - TypeScript execution engine</li>
+            </ul>
+        </div>
+
+        <div class="step-box">
+            <h3><span class="step-number">6</span>Environment Configuration</h3>
+            <ol>
+                <li>Create a <code>.env</code> file in the project root:</li>
+            </ol>
+            <div class="code-block">
+                # Discord Bot Configuration
+                DISCORD_TOKEN=your_bot_token_here
+                CLIENT_ID=your_application_client_id_here
+
+                # Optional: Guild ID for development (faster command deployment)
+                GUILD_ID=your_test_server_id_here
+            </div>
+            <p><strong>Configuration Values:</strong></p>
+            <ul>
+                <li><strong>DISCORD_TOKEN:</strong> Bot token from Discord Developer Portal</li>
+                <li><strong>CLIENT_ID:</strong> Application ID from Discord Developer Portal</li>
+                <li><strong>GUILD_ID:</strong> (Optional) Test server ID for development</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h3>Security Notice</h3>
+            <p><strong>Never commit your .env file or expose your bot token!</strong> Add <code>.env</code> to your
+                <code>.gitignore</code> file and keep your tokens secure.
+            </p>
+        </div>
+
+        <h2>Project Structure</h2>
+        <div class="file-structure">
+            kuroyuki/
+            ├── src/
+            │ ├── index.ts # Bot entry point
+            │ ├── config/
+            │ │ └── index.ts # Configuration management
+            │ ├── core/
+            │ │ └── Bot.ts # Main bot class
+            │ ├── events/
+            │ │ ├── index.ts # Event exports
+            │ │ ├── interactionCreate.ts # Slash command handling
+            │ │ ├── messageCreate.ts # Text command handling
+            │ │ └── ready.ts # Bot ready event
+            │ ├── services/
+            │ │ ├── ActivityManager.ts # Bot activity management
+            │ │ ├── CommandHandler.ts # Text command processing
+            │ │ ├── EventManager.ts # Event system management
+            │ │ └── SlashCommandHandler.ts # Slash command processing
+            │ ├── slashCommands/
+            │ │ ├── commands.ts # Command definitions
+            │ │ ├── help.ts # Help command
+            │ │ ├── ping.ts # Ping command
+            │ │ ├── serverinfo.ts # Server information
+            │ │ ├── timeout.ts # User timeout
+            │ │ └── userinfo.ts # User information
+            │ ├── textCommands/
+            │ │ ├── commandlist.ts # Command list
+            │ │ ├── hello.ts # Hello command
+            │ │ ├── ping.ts # Ping command
+            │ │ ├── redeploy.ts # Command redeployment
+            │ │ ├── restart.ts # Bot restart
+            │ │ ├── serverinfo.ts # Server information
+            │ │ ├── shutdown.ts # Bot shutdown
+            │ │ └── userinfo.ts # User information
+            │ ├── types/
+            │ │ └── index.ts # TypeScript type definitions
+            │ └── utils/
+            │ ├── deploy-commands.ts # Deploy slash commands
+            │ ├── delete-commands.ts # Delete global commands
+            │ └── delete-guild-commands.ts # Delete guild commands
+            ├── doc/ # Documentation files
+            ├── dist/ # Compiled JavaScript output
+            ├── .env # Environment variables (create this)
+            ├── package.json # Project dependencies
+            ├── tsconfig.json # TypeScript configuration
+            └── README.md # Project documentation
+        </div>
+
+        <h2>Running the Bot</h2>
+
+        <div class="step-box">
+            <h3><span class="step-number">7</span>Development Mode</h3>
+            <p>For development with hot reload:</p>
+            <div class="code-block">
+                npm run dev
+            </div>
+        </div>
+
+        <div class="step-box">
+            <h3><span class="step-number">8</span>Deploy Slash Commands</h3>
+            <p>Before first use, deploy slash commands:</p>
+            <div class="code-block">
+                npm run deploy
+            </div>
+        </div>
+
+        <div class="step-box">
+            <h3><span class="step-number">9</span>Production Mode</h3>
+            <p>For production deployment:</p>
+            <div class="code-block">
+                # Build the project
+                npm run build
+
+                # Start the bot
+                npm start
+            </div>
+        </div>
+
+        <h2>Verification</h2>
+
+        <div class="success-box">
+            <h3>✅ Installation Complete</h3>
+            <p>If everything is set up correctly, you should see:</p>
+            <ul>
+                <li>Bot appears online in your Discord server</li>
+                <li>Slash commands are available when typing <code>/</code></li>
+                <li>Bot responds to <code>/ping</code> command</li>
+                <li>Console shows successful connection messages</li>
+            </ul>
+        </div>
+
+        <h2>Available Scripts</h2>
+        <table>
+            <tr>
+                <th>Script</th>
+                <th>Command</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Development</td>
+                <td><code>npm run dev</code></td>
+                <td>Start bot with hot reload for development</td>
+            </tr>
+            <tr>
+                <td>Build</td>
+                <td><code>npm run build</code></td>
+                <td>Compile TypeScript to JavaScript</td>
+            </tr>
+            <tr>
+                <td>Start</td>
+                <td><code>npm start</code></td>
+                <td>Run compiled bot in production</td>
+            </tr>
+            <tr>
+                <td>Restart</td>
+                <td><code>npm run restart</code></td>
+                <td>Quick restart during development</td>
+            </tr>
+            <tr>
+                <td>Deploy Commands</td>
+                <td><code>npm run deploy</code></td>
+                <td>Deploy slash commands to Discord</td>
+            </tr>
+            <tr>
+                <td>Delete Commands</td>
+                <td><code>npm run delete</code></td>
+                <td>Remove global slash commands</td>
+            </tr>
+        </table>
+
+        <h2>Common Issues</h2>
+        <ul>
+            <li><strong>Bot doesn't start:</strong> Check your .env file and bot token</li>
+            <li><strong>Commands not working:</strong> Run <code>npm run deploy</code></li>
+            <li><strong>Permission errors:</strong> Verify bot permissions in Discord server</li>
+            <li><strong>TypeScript errors:</strong> Ensure Node.js version compatibility</li>
+        </ul>
+
+        <p><a href="commands.htm">Next: Bot Commands →</a></p>
+        <p><a href="overview.htm">← Previous: System Overview</a></p>
+        <p><a href="index.htm">← Back to main</a></p>
+    </div>
+</body>
+
+</html>

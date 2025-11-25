@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+    <title>System Overview - Kuroyuki Discord Bot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>System Overview</h1>
+        <p><a href="index.htm">← Back to main</a></p>
+        body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 20px;
+        background-color: #f5f5f5;
+        line-height: 1.6;
+        }
+
+        .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+        color: #0099ff;
+        border-bottom: 3px solid #0099ff;
+        padding-bottom: 10px;
+        }
+
+        h2 {
+        color: #333;
+        margin-top: 25px;
+        }
+
+        .info-box {
+        background-color: #e3f2fd;
+        border-left: 4px solid #0099ff;
+        padding: 15px;
+        margin: 20px 0;
+        }
+
+        .warning-box {
+        background-color: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        margin: 20px 0;
+        }
+
+        .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+        }
+
+        .feature-card {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 20px;
+        }
+
+        .feature-card h3 {
+        color: #0099ff;
+        margin-top: 0;
+        }
+
+        ul {
+        margin-left: 20px;
+        }
+
+        a {
+        color: #0099ff;
+        text-decoration: none;
+        }
+
+        a:hover {
+        text-decoration: underline;
+        }
+
+        table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        }
+
+        th,
+        td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+        }
+
+        th {
+        background-color: #0099ff;
+        color: white;
+        }
+
+        .architecture-diagram {
+        text-align: center;
+        margin: 30px 0;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+
+
+        <h2>Product Description</h2>
+        <p>Kuroyuki is a modern Discord bot built with TypeScript and discord.js v14. It provides comprehensive server
+            management capabilities, user information retrieval, and administrative functions for Discord communities.
+        </p>
+
+        <div class="info-box">
+            <h3>Target Audience</h3>
+            <p>This bot is designed for Discord server administrators, moderators, and community managers who need
+                reliable automation tools for server management and user engagement.</p>
+        </div>
+
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🛠️ Server Management</h3>
+                <ul>
+                    <li>User information retrieval</li>
+                    <li>Server statistics and details</li>
+                    <li>Member management tools</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>⚖️ Moderation Tools</h3>
+                <ul>
+                    <li>User timeout functionality</li>
+                    <li>Permission-based access control</li>
+                    <li>Administrative commands</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>📊 System Monitoring</h3>
+                <ul>
+                    <li>Bot latency checking</li>
+                    <li>Connection status monitoring</li>
+                    <li>Performance diagnostics</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>🎮 User Interaction</h3>
+                <ul>
+                    <li>Slash commands support</li>
+                    <li>Text commands compatibility</li>
+                    <li>Interactive responses</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>System Architecture</h2>
+        <div class="architecture-diagram">
+            <p><strong>Kuroyuki Bot Architecture</strong></p>
+            <pre>
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Discord API   │◄──►│   Core Bot      │◄──►│  Command Layer  │
+│                 │    │   (TypeScript)  │    │                 │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                              │                         │
+                              ▼                         ▼
+                   ┌─────────────────┐    ┌─────────────────┐
+                   │  Event Manager  │    │ Service Layer   │
+                   │                 │    │                 │
+                   └─────────────────┘    └─────────────────┘
+            </pre>
+        </div>
+
+        <h2>Technical Specifications</h2>
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Technology</th>
+                <th>Version</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>Runtime</td>
+                <td>Node.js</td>
+                <td>18+</td>
+                <td>JavaScript execution environment</td>
+            </tr>
+            <tr>
+                <td>Language</td>
+                <td>TypeScript</td>
+                <td>5.8+</td>
+                <td>Type-safe JavaScript development</td>
+            </tr>
+            <tr>
+                <td>Discord Library</td>
+                <td>discord.js</td>
+                <td>14.13+</td>
+                <td>Discord API interaction</td>
+            </tr>
+            <tr>
+                <td>Configuration</td>
+                <td>dotenv</td>
+                <td>16.3+</td>
+                <td>Environment variables management</td>
+            </tr>
+            <tr>
+                <td>Development</td>
+                <td>tsx</td>
+                <td>3.12+</td>
+                <td>TypeScript execution and hot reload</td>
+            </tr>
+        </table>
+
+        <h2>Core Components</h2>
+        <ul>
+            <li><strong>Bot Core:</strong> Main bot instance and client management</li>
+            <li><strong>Command Handlers:</strong> Slash and text command processing</li>
+            <li><strong>Event Manager:</strong> Discord event handling and routing</li>
+            <li><strong>Service Layer:</strong> Business logic and utility services</li>
+            <li><strong>Configuration:</strong> Environment-based settings management</li>
+        </ul>
+
+        <div class="warning-box">
+            <h3>System Requirements</h3>
+            <ul>
+                <li>Node.js version 18 or higher</li>
+                <li>Active Discord application and bot token</li>
+                <li>Server permissions for bot installation</li>
+                <li>Minimum 100MB RAM and 50MB storage</li>
+            </ul>
+        </div>
+
+        <h2>Data Flow</h2>
+        <ol>
+            <li><strong>Event Reception:</strong> Discord events received through WebSocket connection</li>
+            <li><strong>Event Processing:</strong> Events parsed and routed to appropriate handlers</li>
+            <li><strong>Command Execution:</strong> Commands validated and executed with permission checks</li>
+            <li><strong>Response Generation:</strong> Formatted responses sent back to Discord</li>
+            <li><strong>Error Handling:</strong> Errors logged and graceful fallbacks provided</li>
+        </ol>
+
+        <h2>Security Considerations</h2>
+        <ul>
+            <li>Token-based authentication with Discord API</li>
+            <li>Permission-based command access control</li>
+            <li>Environment variable protection for sensitive data</li>
+            <li>Input validation and sanitization</li>
+            <li>Rate limiting compliance with Discord API</li>
+        </ul>
+
+        <p><a href="installation.htm">Next: Installation and Setup →</a></p>
+        <p><a href="index.htm">← Back to main</a></p>
+    </div>
+</body>
+
+</html>

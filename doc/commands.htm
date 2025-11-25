@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+    <title>Bot Commands - Kuroyuki Discord Bot</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bot Commands</h1>
+        <p><a href="index.htm">← Back to main</a></p>
+
+        <p>Kuroyuki Bot supports two types of commands to provide maximum flexibility and compatibility with different
+            user preferences and Discord client versions.</p>
+
+        <h2>Command Types Overview</h2>
+        <div class="command-type">
+            <div class="command-card">
+                <h3>⚡ Slash Commands</h3>
+                <p>Modern Discord command system introduced in 2021. These commands are triggered by typing <span
+                        class="command-syntax">/</span> and provide auto-completion, built-in help, and better user
+                    experience.</p>
+                <ul>
+                    <li>Auto-completion support</li>
+                    <li>Parameter validation</li>
+                    <li>Built-in help text</li>
+                    <li>Better security</li>
+                    <li>Cross-platform compatibility</li>
+                </ul>
+                <p><strong>Usage:</strong> Type <span class="command-syntax">/</span> in Discord chat</p>
+            </div>
+
+            <div class="command-card">
+                <h3>💬 Text Commands</h3>
+                <p>Traditional prefix-based commands that have been used in Discord bots for years. These commands start
+                    with a prefix character (<span class="command-syntax">-</span> by default).</p>
+                <ul>
+                    <li>Familiar to long-time Discord users</li>
+                    <li>Quick to type for experienced users</li>
+                    <li>Can be used in automated scripts</li>
+                    <li>Works with older Discord clients</li>
+                    <li>Customizable prefix per server</li>
+                </ul>
+                <p><strong>Usage:</strong> Type <span class="command-syntax">-command</span> in Discord chat</p>
+            </div>
+        </div>
+
+        <h2>Command Comparison</h2>
+        <table class="comparison-table">
+            <tr>
+                <th>Feature</th>
+                <th>Slash Commands</th>
+                <th>Text Commands</th>
+            </tr>
+            <tr>
+                <td><strong>Discoverability</strong></td>
+                <td>✅ Excellent (auto-completion)</td>
+                <td>⚠️ Requires documentation</td>
+            </tr>
+            <tr>
+                <td><strong>Parameter Validation</strong></td>
+                <td>✅ Built-in</td>
+                <td>⚠️ Manual implementation</td>
+            </tr>
+            <tr>
+                <td><strong>Speed of Execution</strong></td>
+                <td>✅ Fast</td>
+                <td>✅ Very fast for experienced users</td>
+            </tr>
+            <tr>
+                <td><strong>Mobile Compatibility</strong></td>
+                <td>✅ Excellent</td>
+                <td>✅ Good</td>
+            </tr>
+            <tr>
+                <td><strong>Permissions</strong></td>
+                <td>✅ Built-in permission system</td>
+                <td>⚠️ Manual permission checks</td>
+            </tr>
+            <tr>
+                <td><strong>Learning Curve</strong></td>
+                <td>✅ Easy for new users</td>
+                <td>⚠️ Requires memorization</td>
+            </tr>
+        </table>
+
+        <h2>Available Commands by Category</h2>
+
+        <h3>📊 Information Commands</h3>
+        <div class="feature-list">
+            <ul>
+                <li><strong>Help:</strong> Display command information and bot documentation</li>
+                <li><strong>User Info:</strong> Retrieve detailed user account and server information</li>
+                <li><strong>Server Info:</strong> Display comprehensive server statistics and details</li>
+                <li><strong>Ping:</strong> Check bot latency and connection status</li>
+            </ul>
+        </div>
+
+        <h3>👋 Interaction Commands</h3>
+        <div class="feature-list">
+            <ul>
+                <li><strong>Hello:</strong> Friendly greeting command for user interaction</li>
+            </ul>
+        </div>
+
+        <h3>⚖️ Moderation Commands</h3>
+        <div class="feature-list">
+            <ul>
+                <li><strong>Timeout:</strong> Temporarily restrict user messaging privileges</li>
+            </ul>
+        </div>
+
+        <h3>🔧 Administrative Commands (Text Only)</h3>
+        <div class="feature-list">
+            <ul>
+                <li><strong>Restart:</strong> Restart the bot (owner only)</li>
+                <li><strong>Shutdown:</strong> Safely shut down the bot (owner only)</li>
+                <li><strong>Redeploy:</strong> Redeploy slash commands (owner only)</li>
+                <li><strong>Command List:</strong> Display all available text commands</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>Command Availability</h3>
+            <p>Most commands are available in both slash and text formats. However, some administrative commands are
+                only available as text commands for security reasons.</p>
+        </div>
+
+        <h2>Permission System</h2>
+        <p>Commands have different permission requirements:</p>
+        <ul>
+            <li><strong>Public Commands:</strong> Available to all server members (help, ping, hello, userinfo,
+                serverinfo)</li>
+            <li><strong>Moderation Commands:</strong> Require "Moderate Members" permission (timeout)</li>
+            <li><strong>Administrative Commands:</strong> Restricted to bot owner only (restart, shutdown, redeploy)
+            </li>
+        </ul>
+
+        <div class="warning-box">
+            <h3>Important Notes</h3>
+            <ul>
+                <li>Some commands may not be available if the bot lacks necessary permissions</li>
+                <li>Administrative commands are restricted to the bot owner for security</li>
+                <li>Moderation commands respect Discord's role hierarchy</li>
+                <li>The bot cannot perform actions on users with higher roles</li>
+            </ul>
+        </div>
+
+        <h2>Command Syntax Convention</h2>
+        <p>This documentation uses the following syntax conventions:</p>
+        <ul>
+            <li><span class="command-syntax">&lt;parameter&gt;</span> - Required parameter</li>
+            <li><span class="command-syntax">[parameter]</span> - Optional parameter</li>
+            <li><span class="command-syntax">parameter|option</span> - Choice between options</li>
+        </ul>
+
+        <h2>Getting Help</h2>
+        <p>For detailed information about any command:</p>
+        <ul>
+            <li><strong>Slash Commands:</strong> Use <span class="command-syntax">/help [command]</span></li>
+            <li><strong>Text Commands:</strong> Use <span class="command-syntax">-help [command]</span> or <span
+                    class="command-syntax">-commandlist</span></li>
+        </ul>
+
+        <p><a href="slash_commands.htm">View Slash Commands →</a></p>
+        <p><a href="text_commands.htm">View Text Commands →</a></p>
+        <p><a href="installation.htm">← Previous: Installation and Setup</a></p>
+        <p><a href="index.htm">← Back to main</a></p>
+    </div>
+</body>
+
+</html>

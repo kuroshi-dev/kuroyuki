@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+    <title>Troubleshooting - Kuroyuki Discord Bot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Troubleshooting</h1>
+        <p><a href="index.htm">← Back to main</a></p>
+
+        <p>This guide helps you diagnose and resolve common issues with Kuroyuki Bot. Follow the structured approach to
+            identify and fix problems quickly.</p>
+
+        <h2>Quick Diagnosis Checklist</h2>
+        <div class="info-box">
+            <h3>Before You Start</h3>
+            <p>Run through this quick checklist to identify the most common issues:</p>
+            <ol>
+                <li>✅ Is the bot online in your Discord server?</li>
+                <li>✅ Are your environment variables (.env file) configured correctly?</li>
+                <li>✅ Do you have the required Node.js version (18+)?</li>
+                <li>✅ Are your dependencies installed (<code>npm install</code>)?</li>
+                <li>✅ Do you have the necessary Discord permissions?</li>
+            </ol>
+        </div>
+
+        <h2>Installation and Setup Issues</h2>
+
+        <div class="problem-box">
+            <h3>❌ Bot Won't Start</h3>
+            <p><strong>Symptoms:</strong> Bot immediately crashes or shows connection errors</p>
+        </div>
+
+        <div class="solution-box">
+            <h3>💡 Solutions:</h3>
+            <div class="diagnostic-step">
+                <h4><span class="step-number">1</span>Verify Environment Variables</h4>
+                <p>Check your <code>.env</code> file contains valid values:</p>
+                <div class="code-block">
+                    # .env file
+                    DISCORD_TOKEN=your_actual_bot_token_here
+                    CLIENT_ID=your_actual_client_id_here
+                </div>
+                <p><strong>Common mistakes:</strong></p>
+                <ul>
+                    <li>Using placeholder text instead of actual tokens</li>
+                    <li>Extra spaces before/after tokens</li>
+                    <li>Missing .env file entirely</li>
+                    <li>Incorrect token format</li>
+                </ul>
+            </div>
+
+            <div class="diagnostic-step">
+                <h4><span class="step-number">2</span>Check Node.js Version</h4>
+                <div class="code-block">
+                    node --version
+                    npm --version
+                </div>
+                <p>Required: Node.js 18+ and npm 9+</p>
+            </div>
+
+            <div class="diagnostic-step">
+                <h4><span class="step-number">3</span>Reinstall Dependencies</h4>
+                <div class="code-block">
+                    rm -rf node_modules package-lock.json
+                    npm install
+                </div>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>❌ Permission Errors</h3>
+            <p><strong>Error:</strong> <span class="error-code">Cannot read properties of undefined</span> or
+                permission-related crashes</p>
+        </div>
+
+        <div class="solution-box">
+            <h3>💡 Solutions:</h3>
+            <ul>
+                <li>Ensure bot has proper permissions in Discord server</li>
+                <li>Check Gateway Intents are enabled in Discord Developer Portal</li>
+                <li>Verify bot is invited with correct permissions</li>
+                <li>Confirm bot role is high enough in server hierarchy</li>
+            </ul>
+        </div>
+
+        <h2>Command Issues</h2>
+
+        <div class="problem-box">
+            <h3>❌ Slash Commands Not Working</h3>
+            <p><strong>Symptoms:</strong> Slash commands don't appear or show "Application did not respond"</p>
+        </div>
+
+        <div class="solution-box">
+            <h3>💡 Solutions:</h3>
+            <div class="diagnostic-step">
+                <h4><span class="step-number">1</span>Deploy Commands</h4>
+                <div class="code-block">
+                    npm run deploy
+                </div>
+                <p>Wait 1-5 minutes for commands to appear globally, or instantly for guild commands.</p>
+            </div>
+
+            <div class="diagnostic-step">
+                <h4><span class="step-number">2</span>Check Bot Permissions</h4>
+                <p>Required permissions for slash commands:</p>
+                <ul>
+                    <li>Use Slash Commands</li>
+                    <li>Send Messages</li>
+                    <li>View Channels</li>
+                </ul>
+            </div>
+
+            <div class="diagnostic-step">
+                <h4><span class="step-number">3</span>Verify Integration</h4>
+                <p>In Discord server settings → Integrations, check if bot is properly integrated.</p>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>❌ Text Commands Not Responding</h3>
+            <p><strong>Symptoms:</strong> Bot ignores text commands or doesn't respond</p>
+        </div>
+
+        <div class="solution-box">
+            <h3>💡 Solutions:</h3>
+            <ul>
+                <li>Verify correct prefix (default: <code>-</code>)</li>
+                <li>Check Message Content Intent is enabled</li>
+                <li>Ensure bot can read message history</li>
+                <li>Test with simple command like <code>-ping</code></li>
+            </ul>
+        </div>
+
+        <h2>Common Error Messages</h2>
+
+        <table>
+            <tr>
+                <th>Error Message</th>
+                <th>Cause</th>
+                <th>Solution</th>
+            </tr>
+            <tr>
+                <td><span class="error-code">Invalid Token</span></td>
+                <td>Wrong or expired bot token</td>
+                <td>Generate new token in Discord Developer Portal</td>
+            </tr>
+            <tr>
+                <td><span class="error-code">Missing Intents</span></td>
+                <td>Required Gateway Intents not enabled</td>
+                <td>Enable intents in Developer Portal and code</td>
+            </tr>
+            <tr>
+                <td><span class="error-code">Cannot send messages</span></td>
+                <td>Bot lacks Send Messages permission</td>
+                <td>Check bot permissions in server/channel</td>
+            </tr>
+            <tr>
+                <td><span class="error-code">Unknown interaction</span></td>
+                <td>Commands not deployed or outdated</td>
+                <td>Run <code>npm run deploy</code></td>
+            </tr>
+            <tr>
+                <td><span class="error-code">Missing Access</span></td>
+                <td>Bot not in server or kicked</td>
+                <td>Re-invite bot with proper permissions</td>
+            </tr>
+        </table>
+
+        <h2>Performance Issues</h2>
+
+        <div class="problem-box">
+            <h3>❌ Slow Response Times</h3>
+            <p><strong>Symptoms:</strong> Commands take long to respond or timeout</p>
+        </div>
+
+        <div class="solution-box">
+            <h3>💡 Diagnostics:</h3>
+            <div class="diagnostic-step">
+                <h4>Check Latency</h4>
+                <p>Use <code>/ping</code> or <code>-ping</code> to check bot latency:</p>
+                <ul>
+                    <li><span class="status-good">&lt;100ms</span> - Excellent</li>
+                    <li><span class="status-warning">100-300ms</span> - Good</li>
+                    <li><span class="status-bad">&gt;300ms</span> - Poor (investigate network/server issues)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h3>❌ Memory Leaks</h3>
+            <p><strong>Symptoms:</strong> Bot memory usage increases over time, eventual crashes</p>
+        </div>
+
+        <div class="solution-box">
+            <h3>💡 Solutions:</h3>
+            <ul>
+                <li>Restart bot regularly: <code>-restart</code> (owner only)</li>
+                <li>Monitor memory usage with system tools</li>
+                <li>Update to latest discord.js version</li>
+                <li>Check for event listener leaks in custom code</li>
+            </ul>
+        </div>
+
+        <h2>Discord API Issues</h2>
+
+        <div class="warning-box">
+            <h3>Rate Limiting</h3>
+            <p><strong>Error:</strong> <span class="error-code">429 Too Many Requests</span></p>
+            <p><strong>Solution:</strong> Bot automatically handles rate limits. If persistent, reduce command usage
+                frequency.</p>
+        </div>
+
+        <div class="problem-box">
+            <h3>❌ API Outages</h3>
+            <p><strong>Symptoms:</strong> Bot suddenly stops working, connection errors</p>
+        </div>
+
+        <div class="solution-box">
+            <h3>💡 Check Status:</h3>
+            <ul>
+                <li>Visit <a href="https://discordstatus.com" target="_blank">Discord Status Page</a></li>
+                <li>Check bot logs for connection errors</li>
+                <li>Wait for Discord to resolve API issues</li>
+                <li>Bot will automatically reconnect when service is restored</li>
+            </ul>
+        </div>
+
+        <h2>Development Issues</h2>
+
+        <div class="problem-box">
+            <h3>❌ TypeScript Compilation Errors</h3>
+            <p><strong>Symptoms:</strong> Build fails or type errors during development</p>
+        </div>
+
+        <div class="solution-box">
+            <h3>💡 Solutions:</h3>
+            <div class="code-block">
+                # Check TypeScript version
+                npx tsc --version
+
+                # Clean build
+                npm run build
+
+                # Type check only
+                npx tsc --noEmit
+            </div>
+            <ul>
+                <li>Ensure TypeScript version compatibility</li>
+                <li>Check tsconfig.json configuration</li>
+                <li>Update @types/node if needed</li>
+            </ul>
+        </div>
+
+        <div class="problem-box">
+            <h3>❌ Hot Reload Not Working</h3>
+            <p><strong>Symptoms:</strong> Changes not reflected when using <code>npm run dev</code></p>
+        </div>
+
+        <div class="solution-box">
+            <h3>💡 Solutions:</h3>
+            <ul>
+                <li>Restart development server</li>
+                <li>Check file paths in tsx configuration</li>
+                <li>Ensure files are saved properly</li>
+                <li>Check for syntax errors preventing compilation</li>
+            </ul>
+        </div>
+
+        <h2>Debugging Tools</h2>
+
+        <div class="info-box">
+            <h3>🔧 Built-in Diagnostics</h3>
+            <ul>
+                <li><strong>Ping Command:</strong> <code>/ping</code> or <code>-ping</code> - Check latency and
+                    connection</li>
+                <li><strong>Console Logs:</strong> Monitor bot console for error messages</li>
+                <li><strong>Command List:</strong> <code>-commandlist</code> - Verify available commands</li>
+                <li><strong>Help System:</strong> <code>/help</code> or <code>-help</code> - Check command availability
+                </li>
+            </ul>
+        </div>
+
+        <h2>Log Analysis</h2>
+        <div class="diagnostic-step">
+            <h4>Reading Bot Logs</h4>
+            <p>Common log patterns and their meanings:</p>
+            <div class="code-block">
+                ✅ [READY] Bot successfully logged in as Kuroyuki#1234
+                ✅ [SLASH] Deployed 5 slash commands
+                ⚠️ [WARN] Missing permissions in channel #general
+                ❌ [ERROR] Failed to execute command: Missing Access
+            </div>
+        </div>
+
+        <h2>Getting Help</h2>
+        <div class="info-box">
+            <h3>📞 Support Resources</h3>
+            <ul>
+                <li><strong>Documentation:</strong> Review all sections of this user guide</li>
+                <li><strong>Discord.js Guide:</strong> <a href="https://discordjs.guide" target="_blank">Official
+                        discord.js documentation</a></li>
+                <li><strong>Discord Developer Portal:</strong> <a href="https://discord.com/developers/docs"
+                        target="_blank">Discord API documentation</a></li>
+                <li><strong>GitHub Issues:</strong> Report bugs or request features on the project repository</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h3>When Reporting Issues</h3>
+            <p>Include the following information:</p>
+            <ul>
+                <li>Node.js and npm versions</li>
+                <li>Operating system</li>
+                <li>Full error messages or logs</li>
+                <li>Steps to reproduce the issue</li>
+                <li>Bot configuration (without sensitive tokens)</li>
+            </ul>
+        </div>
+
+        <p><a href="technical.htm">Next: Technical Documentation →</a></p>
+        <p><a href="features.htm">← Previous: Features</a></p>
+        <p><a href="index.htm">← Back to main</a></p>
+    </div>
+</body>
+
+</html>

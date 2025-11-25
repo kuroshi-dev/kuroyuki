@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+    <title>Text Commands - Kuroyuki Discord Bot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Text Commands</h1>
+        <p><a href="index.htm">← Back to main</a></p>
+
+        <div class="prefix-info">
+            <h3>Command Prefix</h3>
+            <p>All text commands start with the prefix <code><strong>-</strong></code> (hyphen). This prefix can be
+                customized per server by server administrators.</p>
+            <p><strong>Example:</strong> <code>-ping</code>, <code>-help</code>, <code>-userinfo</code></p>
+        </div>
+
+        <p>Text commands provide a quick and familiar way to interact with Kuroyuki Bot. These commands are especially
+            useful for experienced Discord users and can be faster to type than slash commands.</p>
+
+        <h2>Information Commands</h2>
+
+        <div class="command-box">
+            <p><span class="command-name">-help [command]</span></p>
+            <p><strong>Description:</strong> Displays a list of all available commands or detailed information about a
+                specific command.</p>
+            <p><strong>Parameters:</strong></p>
+            <ul>
+                <li><span class="parameter">command</span> (optional) - name of a specific command to get details about
+                </li>
+            </ul>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li><code>-help</code> - shows all available commands</li>
+                <li><code>-help ping</code> - shows detailed information about the ping command</li>
+            </ul>
+            <p><strong>Aliases:</strong> None</p>
+        </div>
+
+        <div class="command-box">
+            <p><span class="command-name">-ping</span></p>
+            <p><strong>Description:</strong> Checks the bot's latency and connection status with Discord.</p>
+            <p><strong>Parameters:</strong> None</p>
+            <p><strong>Output:</strong> Bot latency in milliseconds and API response time</p>
+            <div class="note">
+                <strong>Note:</strong> This command is useful for diagnosing connection issues and monitoring bot
+                performance.
+            </div>
+        </div>
+
+        <div class="command-box">
+            <p><span class="command-name">-hello</span></p>
+            <p><strong>Description:</strong> Bot sends a friendly greeting message to the user.</p>
+            <p><strong>Parameters:</strong> None</p>
+            <p><strong>Example output:</strong> "Hello, Username! 👋"</p>
+            <p><strong>Usage:</strong> Great for testing bot responsiveness and user interaction</p>
+        </div>
+
+        <div class="command-box">
+            <p><span class="command-name">-userinfo [user]</span></p>
+            <p><strong>Description:</strong> Displays comprehensive information about a user's account and server
+                membership.</p>
+            <p><strong>Parameters:</strong></p>
+            <ul>
+                <li><span class="parameter">user</span> (optional) - user to check (mention, ID, or username). If not
+                    specified, shows your own information</li>
+            </ul>
+            <p><strong>Information displayed:</strong></p>
+            <ul>
+                <li>User ID and discriminator</li>
+                <li>Account creation date</li>
+                <li>Server join date</li>
+                <li>Server nickname (if set)</li>
+                <li>Current status and activity</li>
+                <li>List of assigned roles</li>
+                <li>Avatar and server avatar</li>
+            </ul>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li><code>-userinfo</code> - shows your information</li>
+                <li><code>-userinfo @Username</code> - shows mentioned user's information</li>
+                <li><code>-userinfo 123456789012345678</code> - shows user by ID</li>
+            </ul>
+        </div>
+
+        <div class="command-box">
+            <p><span class="command-name">-serverinfo</span></p>
+            <p><strong>Description:</strong> Displays detailed information about the current Discord server.</p>
+            <p><strong>Parameters:</strong> None</p>
+            <p><strong>Information displayed:</strong></p>
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Server Name & ID</td>
+                    <td>Server name and unique identifier</td>
+                </tr>
+                <tr>
+                    <td>Creation Date</td>
+                    <td>When the server was created</td>
+                </tr>
+                <tr>
+                    <td>Owner Information</td>
+                    <td>Server owner details</td>
+                </tr>
+                <tr>
+                    <td>Member Statistics</td>
+                    <td>Total members, online count, bot count</td>
+                </tr>
+                <tr>
+                    <td>Channel Count</td>
+                    <td>Text, voice, and category channels</td>
+                </tr>
+                <tr>
+                    <td>Role Count</td>
+                    <td>Number of roles in the server</td>
+                </tr>
+                <tr>
+                    <td>Emoji Count</td>
+                    <td>Custom server emojis and stickers</td>
+                </tr>
+                <tr>
+                    <td>Boost Information</td>
+                    <td>Boost level, boost count, and premium features</td>
+                </tr>
+                <tr>
+                    <td>Verification Level</td>
+                    <td>Server security settings</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>Utility Commands</h2>
+
+        <div class="command-box">
+            <p><span class="command-name">-commandlist</span></p>
+            <p><strong>Description:</strong> Displays a comprehensive list of all available text commands with brief
+                descriptions.</p>
+            <p><strong>Parameters:</strong> None</p>
+            <p><strong>Output:</strong> Categorized list of commands with usage syntax</p>
+            <div class="note">
+                <strong>Note:</strong> This command is equivalent to <code>-help</code> but provides a more compact
+                view.
+            </div>
+        </div>
+
+        <h2>Administrative Commands</h2>
+
+        <div class="warning-box">
+            <h3>Restricted Access</h3>
+            <p>The following commands are restricted to the bot owner only. These commands require elevated permissions
+                and can affect bot operation.</p>
+        </div>
+
+        <div class="command-box">
+            <p><span class="command-name">-restart</span></p>
+            <p><strong>Description:</strong> Restarts the bot process, reloading all modules and configurations.</p>
+            <p><strong>Parameters:</strong> None</p>
+            <p><strong>Access:</strong> Bot owner only</p>
+            <div class="admin-note">
+                <strong>Warning:</strong> This command will temporarily disconnect the bot from Discord during the
+                restart process.
+            </div>
+            <p><strong>Use cases:</strong></p>
+            <ul>
+                <li>Apply configuration changes</li>
+                <li>Recover from memory leaks</li>
+                <li>Update bot code in development</li>
+            </ul>
+        </div>
+
+        <div class="command-box">
+            <p><span class="command-name">-shutdown</span></p>
+            <p><strong>Description:</strong> Safely shuts down the bot, disconnecting from Discord and terminating the
+                process.</p>
+            <p><strong>Parameters:</strong> None</p>
+            <p><strong>Access:</strong> Bot owner only</p>
+            <div class="admin-note">
+                <strong>Warning:</strong> This command will completely stop the bot. Manual restart will be required.
+            </div>
+            <p><strong>Use cases:</strong></p>
+            <ul>
+                <li>Maintenance periods</li>
+                <li>Emergency shutdown</li>
+                <li>Server migration</li>
+            </ul>
+        </div>
+
+        <div class="command-box">
+            <p><span class="command-name">-redeploy</span></p>
+            <p><strong>Description:</strong> Redeploys all slash commands to Discord, updating command definitions and
+                permissions.</p>
+            <p><strong>Parameters:</strong> None</p>
+            <p><strong>Access:</strong> Bot owner only</p>
+            <div class="admin-note">
+                <strong>Note:</strong> This command may take a few minutes to complete. Slash commands might be
+                temporarily unavailable during deployment.
+            </div>
+            <p><strong>Use cases:</strong></p>
+            <ul>
+                <li>After adding new slash commands</li>
+                <li>Updating command descriptions or parameters</li>
+                <li>Fixing command registration issues</li>
+            </ul>
+        </div>
+
+        <h2>Command Usage Guidelines</h2>
+
+        <div class="info-box">
+            <h3>Best Practices</h3>
+            <ul>
+                <li><strong>Case Sensitivity:</strong> Commands are case-insensitive (<code>-PING</code> works the same
+                    as <code>-ping</code>)</li>
+                <li><strong>Parameter Formats:</strong> User mentions, IDs, and usernames are all accepted for user
+                    parameters</li>
+                <li><strong>Error Handling:</strong> The bot provides helpful error messages for incorrect usage</li>
+                <li><strong>Rate Limiting:</strong> Commands have built-in cooldowns to prevent spam</li>
+            </ul>
+        </div>
+
+        <h2>Common Parameter Types</h2>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Format</th>
+                <th>Example</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>User Mention</td>
+                <td><code>@username</code></td>
+                <td><code>@JohnDoe</code></td>
+                <td>Direct user mention</td>
+            </tr>
+            <tr>
+                <td>User ID</td>
+                <td><code>123456789012345678</code></td>
+                <td><code>123456789012345678</code></td>
+                <td>18-digit user ID</td>
+            </tr>
+            <tr>
+                <td>Username</td>
+                <td><code>username</code></td>
+                <td><code>johndoe</code></td>
+                <td>Username without @</td>
+            </tr>
+        </table>
+
+        <h2>Error Messages</h2>
+        <p>Common error messages you might encounter:</p>
+        <ul>
+            <li><strong>"Command not found":</strong> Check command spelling and prefix</li>
+            <li><strong>"Insufficient permissions":</strong> You don't have required permissions</li>
+            <li><strong>"User not found":</strong> The specified user doesn't exist or isn't in the server</li>
+            <li><strong>"Missing parameters":</strong> Required parameters weren't provided</li>
+            <li><strong>"Command on cooldown":</strong> Wait before using the command again</li>
+        </ul>
+
+        <h2>Comparison with Slash Commands</h2>
+        <p>While text commands offer familiarity and speed, consider these differences:</p>
+        <ul>
+            <li><strong>Advantages:</strong> Faster for experienced users, work with automation, customizable prefix
+            </li>
+            <li><strong>Disadvantages:</strong> No auto-completion, require memorization, less discoverable for new
+                users</li>
+            <li><strong>Recommendation:</strong> Use slash commands for occasional use, text commands for frequent
+                operations</li>
+        </ul>
+
+        <p><a href="slash_commands.htm">View Slash Commands →</a></p>
+        <p><a href="commands.htm">← Back to Commands Overview</a></p>
+        <p><a href="index.htm">← Back to main</a></p>
+    </div>
+</body>
+
+</html>

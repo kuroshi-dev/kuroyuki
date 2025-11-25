@@ -1,0 +1,507 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+    <title>Technical Documentation - Kuroyuki Discord Bot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Technical Documentation</h1>
+        <p><a href="index.htm">← Back to main</a></p>
+
+        <p>This section provides comprehensive technical information for developers who want to understand, modify, or
+            extend Kuroyuki Bot. It follows the technical documentation requirements of ISO/IEC 26514:2015.</p>
+
+        <h2>System Architecture</h2>
+
+        <div class="architecture-diagram">
+            <h3>Kuroyuki Bot Architecture Overview</h3>
+            <pre>
+┌─────────────────────────────────────────────────────────────────┐
+│                        Discord API Gateway                      │
+│                     (WebSocket + REST API)                      │
+└─────────────────┬───────────────────────────────────────────────┘
+                  │
+                  ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      Core Bot Instance                          │
+│                    (Bot.ts - Main Class)                        │
+├─────────────────┬───────────────┬───────────────┬───────────────┤
+│   Event Manager │ Command Layer │  Service Layer│ Configuration │
+│                 │               │               │               │
+│ ┌─────────────┐ │ ┌───────────┐ │ ┌───────────┐ │ ┌───────────┐ │
+│ │interCreate  │ │ │Slash Cmds │ │ │Activity   │ │ │Environment│ │
+│ │messageCreate│ │ │Text Cmds  │ │ │Manager    │ │ │Variables  │ │
+│ │ready        │ │ │Help System│ │ │Command    │ │ │Settings   │ │
+│ │             │ │ │           │ │ │Handler    │ │ │           │ │
+│ └─────────────┘ │ └───────────┘ │ └───────────┘ │ └───────────┘ │
+└─────────────────┴───────────────┴───────────────┴───────────────┘
+                  │
+                  ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                     Utility Layer                               │
+│           (Deployment, Management, Type Definitions)            │
+└─────────────────────────────────────────────────────────────────┘
+            </pre>
+        </div>
+
+        <h2>Technology Stack</h2>
+
+        <div class="tech-spec">
+            <h3>🔧 Core Technologies</h3>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Technology</th>
+                    <th>Version</th>
+                    <th>Purpose</th>
+                </tr>
+                <tr>
+                    <td>Runtime</td>
+                    <td>Node.js</td>
+                    <td>18.x LTS+</td>
+                    <td>JavaScript execution environment with ES modules support</td>
+                </tr>
+                <tr>
+                    <td>Language</td>
+                    <td>TypeScript</td>
+                    <td>5.8+</td>
+                    <td>Type-safe JavaScript with modern language features</td>
+                </tr>
+                <tr>
+                    <td>Discord Library</td>
+                    <td>discord.js</td>
+                    <td>14.13+</td>
+                    <td>Discord API wrapper with full v10 API support</td>
+                </tr>
+                <tr>
+                    <td>Configuration</td>
+                    <td>dotenv</td>
+                    <td>16.3+</td>
+                    <td>Environment variable management</td>
+                </tr>
+                <tr>
+                    <td>Development</td>
+                    <td>tsx</td>
+                    <td>3.12+</td>
+                    <td>TypeScript execution and hot reload</td>
+                </tr>
+                <tr>
+                    <td>Type Definitions</td>
+                    <td>@types/node</td>
+                    <td>20.x+</td>
+                    <td>Node.js type definitions</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>Project Structure Analysis</h2>
+
+        <div class="file-tree">
+            src/
+            ├── index.ts # Application entry point
+            ├── config/
+            │ └── index.ts # Configuration management
+            ├── core/
+            │ └── Bot.ts # Main bot class implementation
+            ├── events/
+            │ ├── index.ts # Event handler exports
+            │ ├── interactionCreate.ts # Slash command event handling
+            │ ├── messageCreate.ts # Text command event handling
+            │ └── ready.ts # Bot initialization event
+            ├── services/
+            │ ├── ActivityManager.ts # Bot presence and activity
+            │ ├── CommandHandler.ts # Text command processing
+            │ ├── EventManager.ts # Event system management
+            │ └── SlashCommandHandler.ts # Slash command processing
+            ├── slashCommands/
+            │ ├── commands.ts # Command registration
+            │ ├── hello.ts # Greeting command
+            │ ├── help.ts # Help system
+            │ ├── index.ts # Command exports
+            │ ├── ping.ts # Latency check
+            │ ├── serverinfo.ts # Server information
+            │ ├── timeout.ts # User moderation
+            │ └── userinfo.ts # User information
+            ├── textCommands/
+            │ ├── commandlist.ts # Command listing
+            │ ├── hello.ts # Greeting command
+            │ ├── index.ts # Command exports
+            │ ├── ping.ts # Latency check
+            │ ├── redeploy.ts # Command redeployment
+            │ ├── restart.ts # Bot restart
+            │ ├── serverinfo.ts # Server information
+            │ ├── shutdown.ts # Bot shutdown
+            │ └── userinfo.ts # User information
+            ├── types/
+            │ └── index.ts # TypeScript type definitions
+            └── utils/
+            ├── delete-commands.ts # Global command cleanup
+            ├── delete-guild-commands.ts # Guild command cleanup
+            └── deploy-commands.ts # Command deployment
+        </div>
+
+        <h2>Core Classes and Interfaces</h2>
+
+        <h3>Bot Core Class</h3>
+        <div class="api-spec">
+            <h4>Bot.ts</h4>
+            <div class="method-signature">
+                class Bot {
+                private client: Client;
+                private config: BotConfig;
+
+                constructor()
+                getClient(): Client
+                start(): Promise&lt;void&gt;
+                stop(): Promise&lt;void&gt;
+                restart(): Promise&lt;void&gt;
+                }
+            </div>
+            <p><strong>Purpose:</strong> Main bot orchestrator that manages Discord client lifecycle, event
+                registration, and service initialization.</p>
+        </div>
+
+        <h3>Configuration Interface</h3>
+        <div class="api-spec">
+            <h4>BotConfig Interface</h4>
+            <div class="method-signature">
+                interface BotConfig {
+                token: string;
+                prefix: string;
+                clientId: string;
+                intents: GatewayIntentBits[];
+                }
+            </div>
+            <table class="parameter-table">
+                <tr>
+                    <th>Property</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Required</th>
+                </tr>
+                <tr>
+                    <td>token</td>
+                    <td>string</td>
+                    <td>Discord bot authentication token</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>prefix</td>
+                    <td>string</td>
+                    <td>Text command prefix (default: "-")</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>clientId</td>
+                    <td>string</td>
+                    <td>Discord application client ID</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>intents</td>
+                    <td>GatewayIntentBits[]</td>
+                    <td>Discord Gateway intents array</td>
+                    <td>Yes</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>Event System</h2>
+
+        <div class="tech-spec">
+            <h3>📡 Event Handling Architecture</h3>
+            <p>The bot uses Discord.js event-driven architecture with custom event handlers:</p>
+            <ul>
+                <li><strong>interactionCreate:</strong> Processes slash commands and button interactions</li>
+                <li><strong>messageCreate:</strong> Handles text commands and message processing</li>
+                <li><strong>ready:</strong> Initializes bot services and confirms connection</li>
+            </ul>
+        </div>
+
+        <h3>Event Flow Diagram</h3>
+        <div class="architecture-diagram">
+            <pre>
+Discord Event → Event Manager → Handler Selection → Command Processing → Response
+     │              │                  │                    │              │
+     │              │                  ▼                    │              │
+     │              │         ┌─────────────────┐          │              │
+     │              │         │ Permission      │          │              │
+     │              │         │ Validation      │          │              │
+     │              │         └─────────────────┘          │              │
+     │              │                  │                    │              │
+     │              ▼                  ▼                    ▼              ▼
+┌────────────┐ ┌──────────┐ ┌─────────────────┐ ┌─────────────────┐ ┌──────────┐
+│Discord API │ │EventMgr  │ │Slash/Text       │ │Business Logic   │ │Response  │
+│            │ │          │ │Command Routing  │ │Execution        │ │Delivery  │
+└────────────┘ └──────────┘ └─────────────────┘ └─────────────────┘ └──────────┘
+            </pre>
+        </div>
+
+        <h2>Command System Implementation</h2>
+
+        <h3>Slash Commands</h3>
+        <div class="api-spec">
+            <h4>SlashCommand Interface</h4>
+            <div class="method-signature">
+                interface SlashCommand {
+                data: SlashCommandBuilder;
+                execute(interaction: CommandInteraction): Promise&lt;void&gt;;
+                }
+            </div>
+            <p><strong>Implementation Pattern:</strong></p>
+            <div class="code-block">
+                // Example: ping.ts
+                export const data = new SlashCommandBuilder()
+                .setName('ping')
+                .setDescription('Check bot latency');
+
+                export async function execute(interaction: CommandInteraction) {
+                const ping = Date.now() - interaction.createdTimestamp;
+                await interaction.reply(`🏓 Pong! Latency: ${ping}ms`);
+                }
+            </div>
+        </div>
+
+        <h3>Text Commands</h3>
+        <div class="api-spec">
+            <h4>TextCommand Interface</h4>
+            <div class="method-signature">
+                interface TextCommand {
+                name: string;
+                description: string;
+                aliases?: string[];
+                execute(message: Message, args: string[]): Promise&lt;void&gt;;
+                }
+            </div>
+            <p><strong>Implementation Pattern:</strong></p>
+            <div class="code-block">
+                // Example: ping.ts
+                export default {
+                name: 'ping',
+                description: 'Check bot latency',
+                async execute(message: Message, args: string[]) {
+                const ping = Date.now() - message.createdTimestamp;
+                await message.reply(`🏓 Pong! Latency: ${ping}ms`);
+                }
+                };
+            </div>
+        </div>
+
+        <h2>Service Layer Architecture</h2>
+
+        <h3>ActivityManager</h3>
+        <div class="tech-spec">
+            <p><strong>Purpose:</strong> Manages bot presence, status, and activity display</p>
+            <p><strong>Key Methods:</strong></p>
+            <ul>
+                <li><code>setActivity(type, name)</code> - Set bot activity</li>
+                <li><code>setStatus(status)</code> - Update online status</li>
+                <li><code>rotateActivities()</code> - Cycle through activity list</li>
+            </ul>
+        </div>
+
+        <h3>CommandHandler</h3>
+        <div class="tech-spec">
+            <p><strong>Purpose:</strong> Processes text commands with permission validation</p>
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>Command parsing and argument extraction</li>
+                <li>Permission checking and role validation</li>
+                <li>Error handling and user feedback</li>
+                <li>Command cooldown management</li>
+            </ul>
+        </div>
+
+        <h2>Database and Storage</h2>
+
+        <div class="security-note">
+            <h3>🗄️ Current Storage Approach</h3>
+            <p>Kuroyuki Bot currently uses file-based configuration and in-memory storage for:</p>
+            <ul>
+                <li>Configuration settings (.env file)</li>
+                <li>Command data (loaded at startup)</li>
+                <li>Temporary session data (in-memory)</li>
+            </ul>
+            <p><strong>Future Enhancement:</strong> Database integration planned for user preferences, server settings,
+                and persistent data storage.</p>
+        </div>
+
+        <h2>Security Implementation</h2>
+
+        <div class="security-note">
+            <h3>🔐 Security Measures</h3>
+            <ul>
+                <li><strong>Token Security:</strong> Environment variables with .env protection</li>
+                <li><strong>Permission Validation:</strong> Discord permission checking before command execution</li>
+                <li><strong>Input Sanitization:</strong> Parameter validation and type checking</li>
+                <li><strong>Role Hierarchy:</strong> Respects Discord's role-based permissions</li>
+                <li><strong>Rate Limiting:</strong> Built-in cooldowns and Discord API compliance</li>
+                <li><strong>Error Isolation:</strong> Prevents sensitive information leakage in error messages</li>
+            </ul>
+        </div>
+
+        <h3>Permission System</h3>
+        <div class="code-block">
+            // Permission validation example
+            function hasPermission(member: GuildMember, permission: PermissionsBitField): boolean {
+            return member.permissions.has(permission);
+            }
+
+            // Owner-only command check
+            function isOwner(userId: string): boolean {
+            return userId === process.env.OWNER_ID;
+            }
+        </div>
+
+        <h2>Performance Optimization</h2>
+
+        <div class="performance-note">
+            <h3>⚡ Performance Features</h3>
+            <ul>
+                <li><strong>Event Optimization:</strong> Selective Gateway intents to reduce unnecessary events</li>
+                <li><strong>Memory Management:</strong> Efficient object lifecycle and garbage collection</li>
+                <li><strong>Connection Pooling:</strong> Reuse of Discord API connections</li>
+                <li><strong>Caching Strategy:</strong> Smart caching of frequently accessed data</li>
+                <li><strong>Async Operations:</strong> Non-blocking asynchronous processing</li>
+            </ul>
+        </div>
+
+        <h2>Deployment Configuration</h2>
+
+        <h3>Environment Variables</h3>
+        <table>
+            <tr>
+                <th>Variable</th>
+                <th>Required</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>DISCORD_TOKEN</td>
+                <td>Yes</td>
+                <td>Bot authentication token</td>
+                <td>MTIzNDU2Nzg5MDEyMzQ1Njc4.X1Y2Z3.AbCdEfGhIjKlMnOpQrStUvWxYz</td>
+            </tr>
+            <tr>
+                <td>CLIENT_ID</td>
+                <td>Yes</td>
+                <td>Application client ID</td>
+                <td>123456789012345678</td>
+            </tr>
+            <tr>
+                <td>GUILD_ID</td>
+                <td>No</td>
+                <td>Development guild ID</td>
+                <td>987654321098765432</td>
+            </tr>
+            <tr>
+                <td>OWNER_ID</td>
+                <td>No</td>
+                <td>Bot owner user ID</td>
+                <td>555666777888999000</td>
+            </tr>
+        </table>
+
+        <h3>Build Process</h3>
+        <div class="code-block">
+            # TypeScript compilation
+            npx tsc
+
+            # Output structure
+            dist/
+            ├── index.js
+            ├── core/
+            ├── events/
+            ├── services/
+            ├── slashCommands/
+            ├── textCommands/
+            ├── types/
+            └── utils/
+        </div>
+
+        <h2>API Integration</h2>
+
+        <div class="api-spec">
+            <h3>Discord API v10 Integration</h3>
+            <ul>
+                <li><strong>Gateway Version:</strong> 10</li>
+                <li><strong>REST API Version:</strong> 10</li>
+                <li><strong>Application Commands:</strong> Slash commands v3</li>
+                <li><strong>Permissions:</strong> v2 permission system</li>
+                <li><strong>Intents:</strong> Selective Gateway intents</li>
+            </ul>
+        </div>
+
+        <h2>Testing and Quality Assurance</h2>
+
+        <div class="tech-spec">
+            <h3>🧪 Quality Measures</h3>
+            <ul>
+                <li><strong>TypeScript Compilation:</strong> Static type checking and error prevention</li>
+                <li><strong>ESLint Integration:</strong> Code style and quality enforcement</li>
+                <li><strong>Error Handling:</strong> Comprehensive try-catch blocks and error recovery</li>
+                <li><strong>Logging System:</strong> Structured logging for debugging and monitoring</li>
+                <li><strong>Development Tools:</strong> Hot reload and debugging capabilities</li>
+            </ul>
+        </div>
+
+        <h2>Extension and Customization</h2>
+
+        <h3>Adding New Commands</h3>
+        <div class="code-block">
+            // 1. Create command file in appropriate directory
+            // 2. Implement required interface
+            // 3. Export command in index.ts
+            // 4. Redeploy if slash command (npm run deploy)
+
+            // Slash command template
+            export const data = new SlashCommandBuilder()
+            .setName('newcommand')
+            .setDescription('Description here');
+
+            export async function execute(interaction: CommandInteraction) {
+            // Command logic here
+            }
+        </div>
+
+        <h3>Custom Services</h3>
+        <div class="code-block">
+            // Service template
+            export class CustomService {
+            constructor(private client: Client) {}
+
+            async initialize(): Promise&lt;void&gt; {
+            // Initialization logic
+            }
+
+            async execute(): Promise&lt;void&gt; {
+            // Service logic
+            }
+            }
+        </div>
+
+        <h2>Monitoring and Maintenance</h2>
+
+        <div class="tech-spec">
+            <h3>📊 Monitoring Points</h3>
+            <ul>
+                <li><strong>Connection Status:</strong> Discord WebSocket connection health</li>
+                <li><strong>Command Metrics:</strong> Usage statistics and response times</li>
+                <li><strong>Error Rates:</strong> Failed command executions and API errors</li>
+                <li><strong>Memory Usage:</strong> Process memory consumption over time</li>
+                <li><strong>API Latency:</strong> Discord API response times</li>
+            </ul>
+        </div>
+
+        <p><a href="troubleshooting.htm">← Previous: Troubleshooting</a></p>
+        <p><a href="index.htm">← Back to main</a></p>
+    </div>
+</body>
+
+</html>

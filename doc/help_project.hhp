@@ -1,0 +1,28 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=KuroyukiBot.chm
+Contents file=toc.hhc
+Default Window=MainWindow
+Default topic=index.htm
+Display compile progress=Yes
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=User Guide - Kuroyuki Discord Bot
+
+[WINDOWS]
+MainWindow="User Guide - Kuroyuki Bot","toc.hhc",,"index.htm","index.htm",,,,,0x63520,,0x304e,,,,,,,,0
+
+
+[FILES]
+index.htm
+overview.htm
+installation.htm
+commands.htm
+slash_commands.htm
+text_commands.htm
+features.htm
+troubleshooting.htm
+technical.htm
+
+[INFOTYPES]
+

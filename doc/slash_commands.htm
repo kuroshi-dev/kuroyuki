@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+    <title>Slash Commands</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Slash Commands</h1>
+        <p><a href="index.htm">← Back to main</a></p>
+
+        <p>Slash commands are invoked by typing <strong>/</strong> in the Discord message field. The system
+            automatically shows available commands.</p>
+
+        <h2>/help</h2>
+        <div class="command-box">
+            <p><span class="command-name">/help [command]</span></p>
+            <p><strong>Description:</strong> Shows a list of all available commands or detailed information about a
+                specific
+                command.</p>
+            <p><strong>Parameters:</strong></p>
+            <ul>
+                <li><span class="parameter">command</span> (optional) - command name to get detailed
+                    information</li>
+            </ul>
+            <p><strong>Examples:</strong></p>
+            <ul>
+                <li><code>/help</code> - shows all commands</li>
+                <li><code>/help userinfo</code> - shows information about the userinfo command</li>
+            </ul>
+        </div>
+
+        <h2>/ping</h2>
+        <div class="command-box">
+            <p><span class="command-name">/ping</span></p>
+            <p><strong>Description:</strong> Checks the bot's connection latency with Discord.</p>
+            <p><strong>Parameters:</strong> None</p>
+            <p><strong>Result:</strong> Shows latency in milliseconds</p>
+            <div class="note">
+                <strong>Note:</strong> This command is useful for diagnosing connection problems.
+            </div>
+        </div>
+
+        <h2>/hello</h2>
+        <div class="command-box">
+            <p><span class="command-name">/hello</span></p>
+            <p><strong>Description:</strong> Bot greets the user with a personalized message.</p>
+            <p><strong>Parameters:</strong> None</p>
+            <p><strong>Example result:</strong> "Hello, Username! 👋"</p>
+        </div>
+
+        <h2>/userinfo</h2>
+        <div class="command-box">
+            <p><span class="command-name">/userinfo [user]</span></p>
+            <p><strong>Description:</strong> Displays detailed information about a user.</p>
+            <p><strong>Parameters:</strong></p>
+            <ul>
+                <li><span class="parameter">user</span> (optional) - user to check. If not specified,
+                    shows information about you.</li>
+            </ul>
+            <p><strong>Information displayed:</strong></p>
+            <ul>
+                <li>User ID</li>
+                <li>Account creation date</li>
+                <li>Server join date</li>
+                <li>Server nickname</li>
+                <li>Status (online/offline/do not disturb)</li>
+                <li>List of roles</li>
+            </ul>
+        </div>
+
+        <h2>/serverinfo</h2>
+        <div class="command-box">
+            <p><span class="command-name">/serverinfo</span></p>
+            <p><strong>Description:</strong> Shows detailed information about the current Discord server.</p>
+            <p><strong>Parameters:</strong> None</p>
+            <p><strong>Information displayed:</strong></p>
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>ID</td>
+                    <td>Unique server identifier</td>
+                </tr>
+                <tr>
+                    <td>Creation Date</td>
+                    <td>When the server was created</td>
+                </tr>
+                <tr>
+                    <td>Member Count</td>
+                    <td>Total number of users</td>
+                </tr>
+                <tr>
+                    <td>Channel Count</td>
+                    <td>All text and voice channels</td>
+                </tr>
+                <tr>
+                    <td>Role Count</td>
+                    <td>All roles on the server</td>
+                </tr>
+                <tr>
+                    <td>Emoji Count</td>
+                    <td>Custom server emojis</td>
+                </tr>
+                <tr>
+                    <td>Owner</td>
+                    <td>Who created/owns the server</td>
+                </tr>
+                <tr>
+                    <td>Boost Level</td>
+                    <td>Server Boost level (0-3)</td>
+                </tr>
+                <tr>
+                    <td>Boost Count</td>
+                    <td>How many users boosted the server</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>/timeout</h2>
+        <div class="command-box">
+            <p><span class="command-name">/timeout &lt;member&gt;</span></p>
+            <p><strong>Description:</strong> Puts a user in timeout (temporarily blocks the ability to write).</p>
+            <p><strong>Required permissions:</strong> Moderate Members</p>
+            <p><strong>Parameters:</strong></p>
+            <ul>
+                <li><span class="parameter">member</span> (required) - user to timeout</li>
+            </ul>
+            <p><strong>Timeout duration:</strong></p>
+            <ul>
+                <li>1 minute</li>
+                <li>5 minutes</li>
+                <li>10 minutes</li>
+                <li>30 minutes</li>
+                <li>1 hour</li>
+                <li>1 day</li>
+                <li>1 week</li>
+            </ul>
+            <div class="note">
+                <strong>Important:</strong> You cannot timeout a user with higher permissions.
+            </div>
+        </div>
+
+        <h2>General Recommendations</h2>
+        <ul>
+            <li>All slash commands appear automatically when typing <code>/</code></li>
+            <li>Required parameters are marked as <code>&lt;parameter&gt;</code></li>
+            <li>Optional parameters are marked as <code>[parameter]</code></li>
+            <li>Some commands may be unavailable depending on your server permissions</li>
+        </ul>
+
+        <p><a href="index.htm">← Back to main</a></p>
+    </div>
+</body>
+
+</html>
