@@ -150,55 +150,6 @@
             </p>
         </div>
 
-        <h2>Project Structure</h2>
-        <div class="file-structure">
-            kuroyuki/
-            ├── src/
-            │ ├── index.ts # Bot entry point
-            │ ├── config/
-            │ │ └── index.ts # Configuration management
-            │ ├── core/
-            │ │ └── Bot.ts # Main bot class
-            │ ├── events/
-            │ │ ├── index.ts # Event exports
-            │ │ ├── interactionCreate.ts # Slash command handling
-            │ │ ├── messageCreate.ts # Text command handling
-            │ │ └── ready.ts # Bot ready event
-            │ ├── services/
-            │ │ ├── ActivityManager.ts # Bot activity management
-            │ │ ├── CommandHandler.ts # Text command processing
-            │ │ ├── EventManager.ts # Event system management
-            │ │ └── SlashCommandHandler.ts # Slash command processing
-            │ ├── slashCommands/
-            │ │ ├── commands.ts # Command definitions
-            │ │ ├── help.ts # Help command
-            │ │ ├── ping.ts # Ping command
-            │ │ ├── serverinfo.ts # Server information
-            │ │ ├── timeout.ts # User timeout
-            │ │ └── userinfo.ts # User information
-            │ ├── textCommands/
-            │ │ ├── commandlist.ts # Command list
-            │ │ ├── hello.ts # Hello command
-            │ │ ├── ping.ts # Ping command
-            │ │ ├── redeploy.ts # Command redeployment
-            │ │ ├── restart.ts # Bot restart
-            │ │ ├── serverinfo.ts # Server information
-            │ │ ├── shutdown.ts # Bot shutdown
-            │ │ └── userinfo.ts # User information
-            │ ├── types/
-            │ │ └── index.ts # TypeScript type definitions
-            │ └── utils/
-            │ ├── deploy-commands.ts # Deploy slash commands
-            │ ├── delete-commands.ts # Delete global commands
-            │ └── delete-guild-commands.ts # Delete guild commands
-            ├── doc/ # Documentation files
-            ├── dist/ # Compiled JavaScript output
-            ├── .env # Environment variables (create this)
-            ├── package.json # Project dependencies
-            ├── tsconfig.json # TypeScript configuration
-            └── README.md # Project documentation
-        </div>
-
         <h2>Running the Bot</h2>
 
         <div class="step-box">

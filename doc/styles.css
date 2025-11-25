@@ -466,7 +466,7 @@ th {
     font-weight: bold;
 }
 
-/* Responsive Design */
+/* Responsive Design
 @media (max-width: 768px) {
     body {
         margin: 10px;
@@ -505,4 +505,4 @@ th {
     h2 {
         font-size: 1.4em;
     }
-}
+} */

@@ -19,37 +19,6 @@
 
         <h2>System Architecture</h2>
 
-        <div class="architecture-diagram">
-            <h3>Kuroyuki Bot Architecture Overview</h3>
-            <pre>
-┌─────────────────────────────────────────────────────────────────┐
-│                        Discord API Gateway                      │
-│                     (WebSocket + REST API)                      │
-└─────────────────┬───────────────────────────────────────────────┘
-                  │
-                  ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                      Core Bot Instance                          │
-│                    (Bot.ts - Main Class)                        │
-├─────────────────┬───────────────┬───────────────┬───────────────┤
-│   Event Manager │ Command Layer │  Service Layer│ Configuration │
-│                 │               │               │               │
-│ ┌─────────────┐ │ ┌───────────┐ │ ┌───────────┐ │ ┌───────────┐ │
-│ │interCreate  │ │ │Slash Cmds │ │ │Activity   │ │ │Environment│ │
-│ │messageCreate│ │ │Text Cmds  │ │ │Manager    │ │ │Variables  │ │
-│ │ready        │ │ │Help System│ │ │Command    │ │ │Settings   │ │
-│ │             │ │ │           │ │ │Handler    │ │ │           │ │
-│ └─────────────┘ │ └───────────┘ │ └───────────┘ │ └───────────┘ │
-└─────────────────┴───────────────┴───────────────┴───────────────┘
-                  │
-                  ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                     Utility Layer                               │
-│           (Deployment, Management, Type Definitions)            │
-└─────────────────────────────────────────────────────────────────┘
-            </pre>
-        </div>
-
         <h2>Technology Stack</h2>
 
         <div class="tech-spec">
