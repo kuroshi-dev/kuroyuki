@@ -8,9 +8,9 @@
         "build": "tsc",
         "start": "node .",
         "restart": "tsx src/index.ts",
-        "deploy": "tsx src/deploy-commands.ts",
-        "delete": "tsx src/delete-commands.ts",
-        "delete:guild": "tsx src/delete-guild-commands.ts"
+        "deploy": "tsx src/utils/deploy-commands.ts",
+        "delete": "tsx src/utils/delete-commands.ts",
+        "delete:guild": "tsx src/utils/delete-guild-commands.ts"
     },
     "keywords": [],
     "author": "",
